@@ -1,0 +1,34 @@
+.main{
+    margin-top: 50px;
+}
+
+.col-sm{
+    background-color: #ebecf0;
+    height: auto;
+}
+
+.btn-wrapper{
+    min-width: 300px;
+}
+
+button{
+    outline: none;
+    border: none;
+    cursor: pointer; 
+    transition: 200ms;
+    border-radius: 5px !important;
+    padding: 3px 5px;
+}
+
+button:hover {
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+h6{
+    color:#00cbdd;
+}
+
+.float-right svg {
+    cursor: pointer;
+}

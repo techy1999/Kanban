@@ -1,0 +1,17 @@
+.float-right svg {
+    width: 16px;
+    height: 14px;
+}
+
+.trash-edit-icon svg {
+    opacity: 0 !important;
+    transform: 200ms;
+}
+
+.card-wrapper:hover .trash-edit-icon svg{
+    opacity: 1 !important;
+}
+
+.trash-edit-icon svg:active{
+    color: red !important;
+}

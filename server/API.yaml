@@ -1,0 +1,335 @@
+openapi: 3.0.3
+info:
+  title: Kanban
+  version: 0.0.1
+  description: Kanban board to track the workflow of the project
+  
+servers:
+  - url: "http://localhost:3000/api/v1"
+    description: Local dev
+
+tags:
+  - name: List
+    description: List of List
+  - name: Card
+    description: List of Card
+    
+paths:
+  /lists:
+    get:
+      tags:
+        - List
+      summary: Get all the list
+      responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: { 
+                            "lists": [
+                                  {
+                                      "_id": "6314a75ce52a12029b17e51f",
+                                      "title": "Doing",
+                                      "cards": [
+                                          "6314aa11333dd5cee290aeb8",
+                                          "6314aa26333dd5cee290aebc",
+                                          "6314aa32333dd5cee290aec0",
+                                          "6314aa39333dd5cee290aec4"
+                                      ],
+                                      "created_at": "2022-09-04T13:25:48.247Z",
+                                  },
+                                  {
+                                      "_id": "6314a768e52a12029b17e521",
+                                      "title": "In Progress",
+                                      "cards": [
+                                          "6314e92edba6eab0bb3f6333",
+                                          "6314e941dba6eab0bb3f6337"
+                                      ],
+                                      "created_at": "2022-09-04T13:26:00.745Z",
+                                  }      
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+  
+  /list:
+    post:
+      tags:
+        - List
+      summary: Create a new List
+      parameters:
+        - name: title
+          in: query
+          example: Doing
+          description: Enter the title of the list
+          required: true
+          schema:
+            type: string
+        - name: created_at
+          in: query
+          example: 2022-09-04T13:25:48.247Z
+          description: Automatically created 
+          required: true
+          schema:
+            type: string
+        - name: cards
+          in: query
+          example: cards[]
+          description : Empty cards array for storing the cards inside each particular list
+          required: false
+          schema: 
+            type: array
+            items:
+                  $ref: '#/components/schemas/List'
+
+      responses: {
+        201: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {
+                          "_id": "6314a768e52a12029b17e521",
+                            "title": "In Progress",
+                            "cards": [],
+                            "created_at": "2022-09-04T13:26:00.745Z",
+                            "__v": 0
+                      }
+                    }
+                }
+            }
+        }
+    }
+    
+  /list/:id:
+    delete:
+      tags:
+        - List
+      summary: Delete list by list id
+      responses: {
+        204: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {"message" :"Deleted successfully !"}
+                    }
+                }
+            }
+        }
+    }
+    
+    
+  /cards/list/:id:
+    get:
+      tags:
+        - Card
+      summary: Get all the cards for the particular List
+      responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {
+                          "cards": [
+                              {
+                                  _id: "6314aa11333dd5cee290aeb8",
+                                  title: "Backend list api",
+                                  list: "6314a75ce52a12029b17e51f",
+                                  created_at: "2022-09-04T13:37:21.973Z",
+                              },
+                              {
+                                  _id: "6314aa26333dd5cee290aebc",
+                                  title: "frontend react started",
+                                  list: "6314a75ce52a12029b17e51f",
+                                  created_at: "2022-09-04T13:37:42.123Z",
+                              }
+                          ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+  
+
+  /card/:id:
+    post:
+      tags:
+        - Card
+      summary: create a new card
+      parameters:
+        - name: title
+          in: query
+          example: Team meeting
+          description: Enter the title of the Card
+          required: true
+          schema:
+            type: string
+        - name: created_at
+          in: query
+          example: 2022-09-04T13:25:48.247Z
+          description: Automatically created 
+          required: false
+          schema:
+            type: string
+        - name: updated_at
+          in: query
+          example: 2022-09-04T13:25:48.247Z
+          description: Automatically created 
+          required: false
+          schema:
+            type: string
+        - name: list
+          in: query
+          example: _id("6314a75ce52a12029b17e51f")
+          description : Empty cards array for storing the cards inside each particular list
+          required: false
+          schema: 
+            type: string
+                  
+      responses: {
+        201: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {
+                              _id: "6314aa26333dd5cee290aebc",
+                              title: "frontend react started",
+                              list: "6314a75ce52a12029b17e51f",
+                              created_at: "2022-09-04T13:37:42.123Z",
+                          }
+                    }
+                }
+            }
+        }
+    }
+    
+    get:
+      tags:
+        - Card
+      summary: Get a single card by ID
+    
+      responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {
+                              _id: "6314aa26333dd5cee290aebc",
+                              title: "frontend react started",
+                              list: "6314a75ce52a12029b17e51f",
+                              created_at: "2022-09-04T13:37:42.123Z",
+                          }
+                    }
+                }
+            }
+        }
+    }
+    
+      
+    patch:
+      tags:
+        - Card
+      summary: Update the card using card id
+      parameters:
+        - name: title
+          in: query
+          example: Team discussion
+          description: Enter the title of the Card
+          required: true
+          schema:
+            type: string
+            
+      responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {"message":"Updated successfully !"}
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    delete:
+      tags:
+        - Card
+      summary: Delete the card using card id
+      responses: {
+        204: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        example: {"message" :"Deleted successfully !"}
+                    }
+                }
+            }
+        }
+    }
+    
+    
+components:
+  schemas:
+    List:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ObjectId("6314a75ce52a12029b17e51f")
+        title:
+          type: string
+          example: To do
+        created_at:
+          type: string
+          format: date-time
+        update_at:
+          type: string
+          format: date-time
+        cards:
+           type: array
+           items:
+            $ref: '#/components/schemas/Card'
+      xml:
+        name: list
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ObjectId("6314aa32333dd5cee290aec0")
+        title:
+          type: string
+          example: Team meeting
+        created_at:
+          type: string
+          format: date-time
+        update_at:
+          type: string
+          format: date-time
+        list:
+           type: string
+           example: ObjectId("6314a75ce52a12029b17e51f")
+      xml:
+        name: list
+        
+

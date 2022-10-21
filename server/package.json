@@ -1,0 +1,25 @@
+{
+  "name": "kanban",
+  "version": "1.0.0",
+  "description": "Kanban project to manage the project work flow",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "sudhanshu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "helmet": "^6.0.0",
+    "mongodb": "^4.9.1",
+    "mongoose": "^6.5.4",
+    "nodemon": "^2.0.19",
+    "swagger-ui-express": "^4.5.0",
+    "uuid": "^8.3.2"
+  }
+}

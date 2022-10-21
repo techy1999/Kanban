@@ -1,0 +1,26 @@
+@startuml
+center header <font size=20 color=red>Kanban </font>
+
+entity "list" as e02 {
+  *id:INT
+  *name:String
+  *created_at:DATETIME
+  *updated_at:DATETIME
+}
+
+entity "card" as e01 {
+ *id:INT
+ *name:String
+ *list:Object(red:List)
+ *created_at:DATETIME
+ *updated_at:DATETIME
+}
+
+e02||--o{ e01
+
+
+@enduml
+
+
+Note 
+https://www.plantuml.com/plantuml/uml/TP9TRzem68MlwrzXzMgRHFaE1L5K6YWbq1H22AKto8dVV41Y1ziXi7R_VQJgDarLBoph71_xF7hbMwc8K5aI8m-O0e538FIyTNtE59RHJxYfLR37Oovk1D3UX32NCDmj5-SzXCwN8dN2bt4arIKc4aEbXbyHnZyYshaRZyQctUsckrwli1X9eEFqBVsXRtshLRuNdY9ojpbdtuF-Hz0JG1JG3L6TGTyUskF7OM5dAVra__h7K3prmL0j63uXVBJzXz4yOtnH-6LVfVRsLYhnrw88tGAZnVmGCha2Z52eL2exvNAUvrTfJ5WntIkF9-K_ebmiUzQiZXETDQxDkFGmhHiS9ZRVBbrFGK0cvduocCLjovz1y2pp4TbdGxcXYpGArkwnfZNYbdTwEInd3mkhKfAIFjAsNh6pjc65_QsvqFVcSMotszKyZHmVDDqXSpLQEUvsmSLaPpoTLajz-fpNjL5JWs6YrLVXYllXEgHvP1vsN6botupeimk1cjFMPbhRxquxDjxg1yrSM_6BQcnPKDeyLgaCPlVLgJxFXXCoYaQoOMZpjbbdazJYlbbwMX-LundtnnR9rqitYUFwm34C21V--hgUrBGbSKzvAx9Vd4CrwFlAcUO7xz1WSsuiAWYXWI019enYAdYAGGWki039uqn5d5sW0SIW0Dzn8kXVfRyBdLF0QIR32sG1yLJ91w9243ZoE4CIYF12x9vmyIzCaW12lm40
